@@ -1,0 +1,134 @@
+{
+ "creation": "2020-09-03 17:15:23.785212",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "invoice_section",
+  "date",
+  "invoiced_by",
+  "invoiced_to",
+  "section_break_5",
+  "items",
+  "shipment_information_section",
+  "pol",
+  "etd",
+  "pod",
+  "eta",
+  "vesselvehicle",
+  "cntr_no",
+  "section_break_14",
+  "document_status",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "invoice_section",
+   "fieldtype": "Section Break",
+   "label": "Invoice"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date "
+  },
+  {
+   "fieldname": "invoiced_by",
+   "fieldtype": "Link",
+   "label": "Invoiced By",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "invoiced_to",
+   "fieldtype": "Link",
+   "label": "Invoiced To",
+   "options": "Company"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "shipment_information_section",
+   "fieldtype": "Section Break",
+   "label": "Shipment Information"
+  },
+  {
+   "fieldname": "pol",
+   "fieldtype": "Data",
+   "label": "POL"
+  },
+  {
+   "fieldname": "etd",
+   "fieldtype": "Data",
+   "label": "ETD"
+  },
+  {
+   "fieldname": "pod",
+   "fieldtype": "Link",
+   "label": "POD",
+   "options": "Point Of Delivery"
+  },
+  {
+   "fieldname": "eta",
+   "fieldtype": "Datetime",
+   "label": "ETA"
+  },
+  {
+   "fieldname": "vesselvehicle",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vessel/Vehicle",
+   "options": "Vessel"
+  },
+  {
+   "fieldname": "cntr_no",
+   "fieldtype": "Data",
+   "label": "CNTR No."
+  },
+  {
+   "fieldname": "section_break_14",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "document_status",
+   "fieldtype": "Select",
+   "label": "Document Status",
+   "options": "Draft\nWaiting to Receive Items\nReceived"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Shipment Items"
+  }
+ ],
+ "modified": "2020-09-03 18:34:52.127026",
+ "modified_by": "Administrator",
+ "module": "shipments",
+ "name": "shipments",
+ "owner": "umarmuzammil111@gmail.com",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
