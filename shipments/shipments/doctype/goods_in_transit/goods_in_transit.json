@@ -108,10 +108,10 @@
    "options": "Shipment Items"
   }
  ],
- "modified": "2020-09-03 18:34:52.127026",
+ "modified": "2020-09-04 14:11:09.442412",
  "modified_by": "Administrator",
  "module": "shipments",
- "name": "shipments",
+ "name": "Goods In Transit",
  "owner": "umarmuzammil111@gmail.com",
  "permissions": [
   {
