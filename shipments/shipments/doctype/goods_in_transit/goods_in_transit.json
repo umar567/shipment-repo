@@ -6,6 +6,8 @@
  "field_order": [
   "invoice_section",
   "date",
+  "column_break_5",
+  "company",
   "invoiced_by",
   "invoiced_to",
   "section_break_5",
@@ -19,7 +21,8 @@
   "cntr_no",
   "section_break_14",
   "document_status",
-  "remarks"
+  "remarks",
+  "conversion_rate"
  ],
  "fields": [
   {
@@ -105,10 +108,27 @@
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "options": "Shipment Items"
+   "options": "Goods In Transit Item"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "conversion_rate",
+   "fieldtype": "Float",
+   "label": "Conversion Rate",
+   "precision": "7",
+   "print_hide": 1
   }
  ],
- "modified": "2020-09-04 14:11:09.442412",
+ "modified": "2020-09-07 19:03:57.615922",
  "modified_by": "Administrator",
  "module": "shipments",
  "name": "Goods In Transit",

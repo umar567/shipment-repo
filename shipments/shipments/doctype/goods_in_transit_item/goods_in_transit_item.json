@@ -1,0 +1,63 @@
+{
+ "creation": "2020-09-07 18:50:10.017071",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_code",
+  "item_description",
+  "stock_uom",
+  "qty_in_carton",
+  "amount_in_usd"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "fetch_from": "item_code.description",
+   "fieldname": "item_description",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item Description",
+   "read_only": 1
+  },
+  {
+   "fieldname": "stock_uom",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Stock UOM",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "fieldname": "qty_in_carton",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty In Carton",
+   "precision": "2"
+  },
+  {
+   "fieldname": "amount_in_usd",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount In USD",
+   "precision": "2"
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-09-07 19:05:40.083230",
+ "modified_by": "Administrator",
+ "module": "shipments",
+ "name": "Goods In Transit Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
