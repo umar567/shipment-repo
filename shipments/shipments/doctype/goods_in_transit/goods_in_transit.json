@@ -12,6 +12,8 @@
   "invoiced_to",
   "section_break_5",
   "items",
+  "total_qty",
+  "amount",
   "shipment_information_section",
   "pol",
   "etd",
@@ -21,8 +23,7 @@
   "cntr_no",
   "section_break_14",
   "document_status",
-  "remarks",
-  "conversion_rate"
+  "remarks"
  ],
  "fields": [
   {
@@ -58,8 +59,9 @@
   },
   {
    "fieldname": "pol",
-   "fieldtype": "Data",
-   "label": "POL"
+   "fieldtype": "Link",
+   "label": "POL",
+   "options": "Port Of Loading"
   },
   {
    "fieldname": "etd",
@@ -121,14 +123,18 @@
    "options": "Company"
   },
   {
-   "fieldname": "conversion_rate",
+   "fieldname": "total_qty",
    "fieldtype": "Float",
-   "label": "Conversion Rate",
-   "precision": "7",
-   "print_hide": 1
+   "label": "Total Qty",
+   "precision": "2"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount"
   }
  ],
- "modified": "2020-09-07 19:03:57.615922",
+ "modified": "2020-09-08 19:02:38.702454",
  "modified_by": "Administrator",
  "module": "shipments",
  "name": "Goods In Transit",
