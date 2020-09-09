@@ -11,7 +11,7 @@ def execute(filters):
 	"fieldname": "name",
 	"label": _("ID"),
 	"fieldtype": "Link",
-	"options": "Goods In Transit",
+	"options": "Goods In Transit Note",
 	
 	
 	},
@@ -54,7 +54,7 @@ def execute(filters):
 	{
 		"fieldname": "etd",
 		"label": _("ETD"),
-		"fieldtype": "Data",
+		"fieldtype": "Date",
 		
 	},
 	{
@@ -141,10 +141,10 @@ def get_data(filters):
 	if filters.date:
 		q_filters['date'] = filters.date
 
-	doclist = frappe.db.get_list('Goods In Transit',q_filters)
+	doclist = frappe.db.get_list('Goods In Transit Note',q_filters)
 	for x in doclist:
 		docname = x.name
-		doc = frappe.get_doc('Goods In Transit', docname)
+		doc = frappe.get_doc('Goods In Transit Note', docname)
 		
 		if filters.show_goods_in_transit_item:
 			for y in doc.items:

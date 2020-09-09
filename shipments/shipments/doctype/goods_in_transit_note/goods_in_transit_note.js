@@ -1,9 +1,9 @@
 // Copyright (c) 2020, Havenir and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on('Goods In Transit', {
+frappe.ui.form.on('Goods In Transit Note', {
 	calculate_amount: function (frm){
-		// triggers when you change row value in Goods In Transit Item
+		// triggers when you change row value in Goods In Transit Note Item
 		let doc = frm.doc;
 		let qty_total = 0;
 		let amount_total = 0;

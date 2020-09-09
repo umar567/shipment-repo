@@ -8,7 +8,7 @@ frappe.query_reports["Goods In Transit Report"] = {
 			'label': 'Name',
 			'fieldname': 'name',
 			'fieldtype': 'Link',
-			'options': 'Goods In Transit'
+			'options': 'Goods In Transit Note'
 			
 			
 		},
