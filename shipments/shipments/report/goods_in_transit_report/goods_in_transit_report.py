@@ -37,8 +37,8 @@ def execute(filters):
 		
 	},
 	{
-		"fieldname": "Company",
-		"label": _("company"),
+		"fieldname": "company",
+		"label": _("Company"),
 		"fieldtype": "Link",
 		"options": "Company",
 		
@@ -153,7 +153,7 @@ def get_data(filters):
 					'date' : doc.date,
 					'invoiced_by' : doc.invoiced_by,
 					'invoiced_to': doc.invoiced_to,
-					'company' : "hello", 
+					'company' : doc.company, 
 					'pol' : doc.pol,
 					'etd' : doc.etd, 
 					'pod' : doc.pod,
@@ -173,7 +173,7 @@ def get_data(filters):
 				'date' : doc.date,
 				'invoiced_by' : doc.invoiced_by,
 				'invoiced_to': doc.invoiced_to,
-				'company' : "hello", 
+				'company' : doc.company, 
 				'pol' : doc.pol,
 				'etd' : doc.etd, 
 				'pod' : doc.pod,
