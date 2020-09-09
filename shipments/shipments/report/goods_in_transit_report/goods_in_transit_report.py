@@ -47,7 +47,8 @@ def execute(filters):
 	{
 		"fieldname": "pol",
 		"label": _("POL"),
-		"fieldtype": "Data",
+		"fieldtype": "Link",
+		"options": "Port Of Loading",
 		
 	},
 	{
@@ -59,7 +60,8 @@ def execute(filters):
 	{
 		"fieldname": "pod",
 		"label": _("POD"),
-		"fieldtype": "Data",
+		"fieldtype": "Link",
+		"options": "Point Of Delivery",
 		
 	},
 	{
@@ -71,8 +73,8 @@ def execute(filters):
 	{
 		"fieldname": "vesselvehicle",
 		"label": _("Vessel/Vehicle"),
-		"fieldtype": "Data",
-		
+		"fieldtype": "Link",
+		"options": "Vessel",
 	},
 	{
 		"fieldname": "cntr_no",

@@ -30,7 +30,7 @@ frappe.query_reports["Goods In Transit Report"] = {
 			"label": __("Show Goods In Transit Item"),
 			"fieldtype": "Check",
 			on_change: () => {
-				
+				$('button[data-label="Refresh"]').click();
 			}
 		},
 		
