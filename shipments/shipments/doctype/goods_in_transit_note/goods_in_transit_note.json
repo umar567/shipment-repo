@@ -1,5 +1,5 @@
 {
- "autoname": "Goods  In Transit Note.#####",
+ "autoname": "GTN.#####",
  "creation": "2020-09-03 17:15:23.785212",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -135,7 +135,7 @@
    "label": "Amount"
   }
  ],
- "modified": "2020-09-09 17:17:29.020961",
+ "modified": "2020-09-09 17:25:54.778504",
  "modified_by": "Administrator",
  "module": "shipments",
  "name": "Goods In Transit Note",
