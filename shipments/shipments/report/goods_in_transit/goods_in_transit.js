@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 /* eslint-disable */
 
-frappe.query_reports["Goods In Transit Report"] = {
+frappe.query_reports["Goods In Transit"] = {
 	"filters": [
         {
 			'label': 'Name',
