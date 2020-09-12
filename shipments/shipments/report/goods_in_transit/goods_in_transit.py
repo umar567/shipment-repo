@@ -19,6 +19,7 @@ def execute(filters):
 	"fieldname": "date",
 	"label": _("Date"),
 	"fieldtype": "date",
+	"width": "80"
 	
 	},
 	{
@@ -26,6 +27,7 @@ def execute(filters):
 		"label": _("Invoiced By"),
 		"fieldtype": "Link",
 		"options": "Supplier",
+		"width": "90"
 	
 	},
 	
@@ -34,6 +36,7 @@ def execute(filters):
 		"label": _("Invoiced To"),
 		"fieldtype": "Link",
 		"options": "Company",
+		"width": "130"
 		
 	},
 	{
@@ -41,6 +44,7 @@ def execute(filters):
 		"label": _("Company"),
 		"fieldtype": "Link",
 		"options": "Company",
+		"width": "130"
 		
 		
 	},
@@ -49,25 +53,27 @@ def execute(filters):
 		"label": _("POL"),
 		"fieldtype": "Link",
 		"options": "Port Of Loading",
-		
+		"width": "100"
 	},
 	{
 		"fieldname": "etd",
 		"label": _("ETD"),
 		"fieldtype": "Date",
-		
+		"width": "100"
 	},
 	{
 		"fieldname": "pod",
 		"label": _("POD"),
 		"fieldtype": "Link",
 		"options": "Point Of Delivery",
+		"width": "100"
 		
 	},
 	{
 		"fieldname": "eta",
 		"label": _("ETA"),
 		"fieldtype": "data",
+		"width": "100"
 		
 	},
 	{
@@ -75,6 +81,7 @@ def execute(filters):
 		"label": _("Vessel/Vehicle"),
 		"fieldtype": "Link",
 		"options": "Vessel",
+		"width": "100"
 	},
 	{
 		"fieldname": "cntr_no",
@@ -122,6 +129,7 @@ def execute(filters):
 		"fieldname": "total_amount",
 		"label": _("Total Amount"),
 		"fieldtype": "Currency",
+		"width": "100"
 		
 		
 	}
