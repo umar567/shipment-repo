@@ -29,9 +29,47 @@ def execute(filters):
 		"options": "Supplier",
 		"width": "90"
 	
+	}]
+	if filters.show_goods_in_transit_item:
+			columns.extend([{
+		"fieldname": "item_code",
+		"label": _("Item Code"),
+		"fieldtype": "Data",
+		
 	},
-	
 	{
+		"fieldname": "warehouse",
+		"label": _("warehouse"),
+		"fieldtype": "Data",
+		
+		
+	},
+	{
+		"fieldname": "qty",
+		"label": _("Qty"),
+		"fieldtype": "Float",
+		
+		
+	},
+	{
+		"fieldname": "rate",
+		"label": _("Rate"),
+		"fieldtype": "Float",
+		
+		
+	},
+	{
+		"fieldname": "total_amount",
+		"label": _("Total Amount"),
+		"fieldtype": "Currency",
+		"width": "100"
+		
+		
+	}
+
+			])
+	
+	columns.extend([{
 		"fieldname": "invoiced_to",
 		"label": _("Invoiced To"),
 		"fieldtype": "Link",
@@ -96,45 +134,8 @@ def execute(filters):
 		'options' : 'Draft\nWaiting to Receive Items\nReceived'
 		
 	}
-	]
-	if filters.show_goods_in_transit_item:
-			columns.extend([{
-		"fieldname": "item_code",
-		"label": _("Item Code"),
-		"fieldtype": "Data",
-		
-	},
-	{
-		"fieldname": "warehouse",
-		"label": _("warehouse"),
-		"fieldtype": "Data",
-		
-		
-	},
-	{
-		"fieldname": "qty",
-		"label": _("Qty"),
-		"fieldtype": "Float",
-		
-		
-	},
-	{
-		"fieldname": "rate",
-		"label": _("Rate"),
-		"fieldtype": "Float",
-		
-		
-	},
-	{
-		"fieldname": "total_amount",
-		"label": _("Total Amount"),
-		"fieldtype": "Currency",
-		"width": "100"
-		
-		
-	}
-
-			])
+	])
+	
 	data = get_data(filters)
 	return columns,data
 def get_data(filters):
