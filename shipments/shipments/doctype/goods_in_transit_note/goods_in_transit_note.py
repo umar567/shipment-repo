@@ -20,7 +20,10 @@ class GoodsInTransitNote(Document):
 					'item_code' : item.item_code,
 					'qty': item.qty,
 					'rate': item.rate,
-					'total_amount' : item.amount	
+					'total_amount' : item.amount,
+					'warehouse'	: item.warehouse,
+					'conversion_factor' : item.conversion_factor,
+					'uom' : item.uom
 				}
 				)
 				total_qty += item.qty
