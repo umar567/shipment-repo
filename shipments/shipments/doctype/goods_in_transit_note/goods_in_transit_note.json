@@ -24,7 +24,8 @@
   "cntr_no",
   "section_break_14",
   "document_status",
-  "remarks"
+  "remarks",
+  "amended_from"
  ],
  "fields": [
   {
@@ -133,9 +134,19 @@
    "fieldname": "amount",
    "fieldtype": "Currency",
    "label": "Amount"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Goods In Transit Note",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
- "modified": "2020-09-09 17:25:54.778504",
+ "is_submittable": 1,
+ "modified": "2020-09-11 16:48:21.346073",
  "modified_by": "Administrator",
  "module": "shipments",
  "name": "Goods In Transit Note",
