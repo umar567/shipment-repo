@@ -14,7 +14,10 @@
   "rate",
   "total_amount",
   "currency",
-  "package_details"
+  "package_details",
+  "details_section",
+  "purchase_order",
+  "purchase_order_item"
  ],
  "fields": [
   {
@@ -87,10 +90,26 @@
    "in_list_view": 1,
    "label": "Warehouse",
    "options": "Warehouse"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "label": "Purchase Order",
+   "options": "Purchase Order"
+  },
+  {
+   "fieldname": "purchase_order_item",
+   "fieldtype": "Data",
+   "label": "Purchase Order Item"
   }
  ],
  "istable": 1,
- "modified": "2020-09-08 12:14:44.058335",
+ "modified": "2020-09-16 11:23:02.920557",
  "modified_by": "Administrator",
  "module": "shipments",
  "name": "Goods In Transit Item",

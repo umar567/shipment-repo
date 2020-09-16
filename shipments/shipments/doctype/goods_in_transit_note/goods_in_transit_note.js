@@ -39,7 +39,7 @@ frappe.ui.form.on('Goods In Transit Note', {
 
 	get_items_from_purchase_order: function (frm) {
 		if (!frm.doc.invoiced_by){
-			frappe.msgprint('Supplier not selected')
+			frappe.msgprint('Invoiced By not selected')
 		}
 		else{
 		new frappe.ui.form.MultiSelectDialog({
@@ -53,7 +53,8 @@ frappe.ui.form.on('Goods In Transit Note', {
 				return {
 					filters: { 
 						docstatus: ['=', 1],
-						supplier: cur_frm.doc.invoiced_by
+						supplier: cur_frm.doc.invoiced_by,
+						goods_status:["!=", "Dispatched"]
 					}
 				}
 			},

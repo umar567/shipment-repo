@@ -1,0 +1,20 @@
+Get items from Purchase Order:
+Target: Only show those purchase orders whose goods_status != 'Dispatched'
+
+
+Target: Verify the quantity availble to be dispatched before submitting the Goods in Transit
+
+Purchase Order Field:
+	Goods Status
+		Data
+	
+Purchase Order item:
+	Dispatched
+		Float
+		precision	2
+
+Goods In Transit Item:
+	Purchase Order
+		Link	Purchase order
+	Purchase Order Item
+		Data

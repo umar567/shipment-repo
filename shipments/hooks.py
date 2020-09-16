@@ -26,6 +26,11 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
+doctype_js = {
+    "Purchase Order" : "public/js/purchase_order.js",
+    "Purchase Receipt" : "public/js/purchase_receipt.js"
+}
+
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -78,6 +83,7 @@ app_license = "MIT"
 # Document Events
 # ---------------
 # Hook on document methods and events
+
 
 # doc_events = {
 # 	"*": {
