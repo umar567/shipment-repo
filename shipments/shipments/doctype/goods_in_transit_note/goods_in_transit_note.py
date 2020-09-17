@@ -85,7 +85,6 @@ class GoodsInTransitNote(Document):
 		amount = 0
 		for doc_id in selections:
 			purchase_order = frappe.get_doc('Purchase Order', doc_id)
-			purchase_order.db_set('goods_status', 'Goods in Transit')
 			for row in purchase_order.items:
 				if row.qty - row.dispatched_qty != 0:
 					qty = row.qty - row.dispatched_qty
@@ -100,7 +99,7 @@ class GoodsInTransitNote(Document):
 						'conversion_factor': row.conversion_factor,
 						'stock_uom': row.stock_uom,
 						'rate' :row.rate,
-						'amount' :row.amount,
+						'amount' :row.rate * qty,
 						'purchase_order': purchase_order.name,
 						'purchase_order_item': row.name
 					})

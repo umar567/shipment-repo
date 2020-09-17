@@ -17,8 +17,9 @@ frappe.ui.form.on('Goods In Transit Note', {
 				() => frappe.new_doc('Purchase Receipt'),
 				() => {
 					cur_frm.doc.supplier = doc.invoiced_by;
+					cur_frm.doc.items = []
 					for (let i in doc.items){
-						cur_frm.doc.items = []
+						if(doc.items[i].qty - doc.items[i].received_qty != 0){
 						cur_frm.add_child('items', {
 							item_code : doc.items[i].item_code,
 							item_name: doc.items[i].item_name,
@@ -33,6 +34,7 @@ frappe.ui.form.on('Goods In Transit Note', {
 							goods_in_transit_note: doc.name,
 							goods_in_transit_note_item: doc.items[i].name
 						})
+					}
 					}
 					cur_frm.refresh_field('items')
 				}
@@ -56,7 +58,7 @@ frappe.ui.form.on('Goods In Transit Note', {
 				company: cur_frm.doc.company,
 				
 			},
-			date_field: "posting_date",
+			
 			get_query() {
 				return {
 					filters: { 

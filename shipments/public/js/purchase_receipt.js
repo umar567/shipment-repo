@@ -53,11 +53,12 @@ frappe.ui.form.on("Purchase Receipt", {
 									conversion_factor: doc.items[i].conversion_factor,
 									stock_uom: doc.items[i].stock_uom,
 									rate : doc.items[i].rate,
-									amount : doc.items[i].amount,
+									amount : doc.items[i].qty* doc.items[i].rate,
 									goods_in_transit_note: doc.name,
 									goods_in_transit_note_item: doc.items[i].name
 								})
 							}
+
 						})
 					}
 					cur_frm.refresh();
