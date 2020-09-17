@@ -16,7 +16,7 @@ def execute(filters):
 	
 	},
 	{
-	"fieldname": "date",
+	"fieldname": "posting_date",
 	"label": _("Date"),
 	"fieldtype": "date",
 	"width": "80"
@@ -59,8 +59,8 @@ def execute(filters):
 		
 	},
 	{
-		"fieldname": "total_amount",
-		"label": _("Total Amount"),
+		"fieldname": "amount",
+		"label": _("Amount"),
 		"fieldtype": "Currency",
 		"width": "100"
 		
@@ -128,10 +128,11 @@ def execute(filters):
 		
 	},
 	{
-		"fieldname": "document_status",
-		"label": _("Document Status"),
+		"fieldname": "status",
+		"label": _("Status"),
 		"fieldtype": "Select",
-		'options' : 'Draft\nWaiting to Receive Items\nReceived'
+		"width": "100"
+		# 'options' : 'Draft\nWaiting to Receive Items\nReceived'
 		
 	}
 	])
@@ -141,14 +142,9 @@ def execute(filters):
 def get_data(filters):
 	q_filters = {}
 	data = []
-	if filters.name:
-		q_filters['name'] = filters.name
-		
-	if filters.document_status:
-		q_filters['document_status'] = filters.document_status
-	
-	if filters.date:
-		q_filters['date'] = filters.date
+	for key, value in filters.items():
+		if key not in ['show_goods_in_transit_item']:
+			q_filters[key] = value
 
 	doclist = frappe.db.get_list('Goods In Transit Note',q_filters)
 	for x in doclist:
@@ -159,9 +155,14 @@ def get_data(filters):
 			for y in doc.items:
 				data.append({
 					'name' : doc.name,
-					'date' : doc.date,
+					'posting_date' : doc.posting_date,
 					'invoiced_by' : doc.invoiced_by,
 					'invoiced_to': doc.invoiced_to,
+					'item_code' : y.item_code, 
+					'warehouse' : y.warehouse,
+					'qty' : y.qty,
+					'rate' : y.rate,
+					'amount' : y.amount,
 					'company' : doc.company, 
 					'pol' : doc.pol,
 					'etd' : doc.etd, 
@@ -169,12 +170,7 @@ def get_data(filters):
 					'eta' : doc.eta,
 					'vesselvehicle' : doc.vesselvehicle,
 					'cntr_no' : doc.cntr_no,
-					'document_status' : doc.document_status,
-					'item_code' : y.item_code, 
-					'warehouse' : y.warehouse,
-					'qty' : y.qty,
-					'rate' : y.rate,
-					'total_amount' : y.total_amount,
+					'status' : doc.status
 				})
 		else:
 			data.append({
@@ -189,8 +185,7 @@ def get_data(filters):
 				'eta' : doc.eta,
 				'vesselvehicle' : doc.vesselvehicle,
 				'cntr_no' : doc.cntr_no,
-				'document_status' : doc.document_status,
-				
+				'status' : doc.status
 			})
 				
 	return data

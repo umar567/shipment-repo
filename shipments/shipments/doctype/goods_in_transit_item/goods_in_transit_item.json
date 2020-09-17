@@ -5,19 +5,28 @@
  "engine": "InnoDB",
  "field_order": [
   "item_code",
-  "item_description",
+  "column_break_2",
+  "item_name",
+  "description_section",
+  "description",
+  "in_transit_section",
   "warehouse",
   "qty",
+  "package_details",
+  "column_break_10",
   "uom",
   "conversion_factor",
   "stock_uom",
+  "value_section",
   "rate",
-  "total_amount",
+  "column_break_16",
+  "amount",
   "currency",
-  "package_details",
   "details_section",
   "purchase_order",
-  "purchase_order_item"
+  "purchase_order_item",
+  "column_break_15",
+  "received_qty"
  ],
  "fields": [
   {
@@ -26,13 +35,6 @@
    "in_list_view": 1,
    "label": "Item Code",
    "options": "Item"
-  },
-  {
-   "fetch_from": "item_code.description",
-   "fieldname": "item_description",
-   "fieldtype": "Data",
-   "label": "Item Description",
-   "read_only": 1
   },
   {
    "fieldname": "stock_uom",
@@ -52,26 +54,19 @@
    "fieldname": "uom",
    "fieldtype": "Link",
    "label": "UOM",
-   "options": "UOM"
+   "options": "UOM",
+   "reqd": 1
   },
   {
    "fieldname": "conversion_factor",
    "fieldtype": "Float",
-   "label": "Conversion Factor"
+   "label": "UOM Conversion Factor"
   },
   {
    "fieldname": "rate",
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Rate"
-  },
-  {
-   "fieldname": "total_amount",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Total Amount",
-   "precision": "2",
-   "read_only": 1
   },
   {
    "fieldname": "currency",
@@ -100,16 +95,78 @@
    "fieldname": "purchase_order",
    "fieldtype": "Link",
    "label": "Purchase Order",
-   "options": "Purchase Order"
+   "options": "Purchase Order",
+   "read_only": 1
   },
   {
    "fieldname": "purchase_order_item",
    "fieldtype": "Data",
-   "label": "Purchase Order Item"
+   "hidden": 1,
+   "label": "Purchase Order Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "received_qty",
+   "fieldtype": "Float",
+   "label": "Received Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "description_section",
+   "fieldtype": "Section Break",
+   "label": "Description"
+  },
+  {
+   "fieldname": "in_transit_section",
+   "fieldtype": "Section Break",
+   "label": "In Transit"
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "value_section",
+   "fieldtype": "Section Break",
+   "label": "Value"
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "item_code.description",
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Item Description",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount",
+   "precision": "2",
+   "read_only": 1
   }
  ],
  "istable": 1,
- "modified": "2020-09-16 11:23:02.920557",
+ "modified": "2020-09-17 05:02:36.304359",
  "modified_by": "Administrator",
  "module": "shipments",
  "name": "Goods In Transit Item",

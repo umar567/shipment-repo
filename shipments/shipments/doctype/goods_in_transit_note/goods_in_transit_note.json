@@ -6,24 +6,25 @@
  "engine": "InnoDB",
  "field_order": [
   "invoice_section",
-  "date",
+  "posting_date",
+  "invoiced_by",
   "column_break_5",
   "company",
-  "invoiced_by",
   "invoiced_to",
   "section_break_5",
   "items",
   "total_qty",
-  "amount",
+  "total",
   "shipment_information_section",
   "pol",
   "etd",
+  "vesselvehicle",
+  "column_break_14",
   "pod",
   "eta",
-  "vesselvehicle",
   "cntr_no",
   "section_break_14",
-  "document_status",
+  "status",
   "remarks",
   "amended_from"
  ],
@@ -32,11 +33,6 @@
    "fieldname": "invoice_section",
    "fieldtype": "Section Break",
    "label": "Invoice"
-  },
-  {
-   "fieldname": "date",
-   "fieldtype": "Date",
-   "label": "Date "
   },
   {
    "fieldname": "invoiced_by",
@@ -60,23 +56,27 @@
    "label": "Shipment Information"
   },
   {
+   "description": "Port Of Loading",
    "fieldname": "pol",
    "fieldtype": "Link",
    "label": "POL",
    "options": "Port Of Loading"
   },
   {
+   "description": "Estimate Time of Departure",
    "fieldname": "etd",
    "fieldtype": "Datetime",
    "label": "ETD"
   },
   {
+   "description": "Point Of Delivery",
    "fieldname": "pod",
    "fieldtype": "Link",
    "label": "POD",
    "options": "Point Of Delivery"
   },
   {
+   "description": "Estimate Time of Arrival",
    "fieldname": "eta",
    "fieldtype": "Datetime",
    "label": "ETA"
@@ -96,12 +96,6 @@
   {
    "fieldname": "section_break_14",
    "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "document_status",
-   "fieldtype": "Select",
-   "label": "Document Status",
-   "options": "Draft\nWaiting to Receive Items\nReceived"
   },
   {
    "fieldname": "remarks",
@@ -128,12 +122,8 @@
    "fieldname": "total_qty",
    "fieldtype": "Float",
    "label": "Total Qty",
-   "precision": "2"
-  },
-  {
-   "fieldname": "amount",
-   "fieldtype": "Currency",
-   "label": "Amount"
+   "precision": "2",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -143,10 +133,34 @@
    "options": "Goods In Transit Note",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nWaiting to Receive Items\nItems Received Partially\nReceived",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Date ",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Currency",
+   "label": "Total",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
- "modified": "2020-09-11 16:48:21.346073",
+ "modified": "2020-09-17 03:56:24.008587",
  "modified_by": "Administrator",
  "module": "shipments",
  "name": "Goods In Transit Note",
@@ -165,7 +179,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1
