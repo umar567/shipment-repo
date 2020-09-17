@@ -19,16 +19,24 @@ frappe.ui.form.on("Purchase Order", {
 						for (let i in doc.items){
 							cur_frm.add_child('items', {
 								item_code : doc.items[i].item_code,
+								item_name: doc.items[i].item_name,
+								description: doc.items[i].description,
+								warehouse: doc.items[i].warehouse,
 								qty : doc.items[i].qty,
-								warehouse : doc.items[i].warehouse,
+								uom : doc.items[i].uom,
+								conversion_factor: doc.items[i].conversion_factor,
+								stock_uom: doc.items[i].stock_uom,
 								rate : doc.items[i].rate,
-								total_amount : doc.items[i].amount,
+								amount : doc.items[i].amount,
+								purchase_order: doc.name,
+								purchase_order_item: doc.items[i].name
 							})
 						}
-						cur_frm.refresh_field('items')
+						cur_frm.refresh_field('items');
+						cur_frm.trigger('calculate_amount');
 					}
 				]);
-			});
+			}, __("Create"));
 		}
 	},
 });

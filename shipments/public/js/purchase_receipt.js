@@ -2,8 +2,10 @@ frappe.ui.form.on("Purchase Receipt", {
 
     refresh: function(frm) {
     //Add custom button Get Items From
-		if (frm.is_new()){
-			frm.add_custom_button(__('Get Items'), () => frm.trigger('get_items_from_goodsintransit'), __('Goods In Transit'));
+		if (frm.doc.docstatus == 0){
+			frm.add_custom_button(__('Goods In Transit'), 
+			() => frm.trigger('get_items_from_goodsintransit'), 
+			__('Get items from'));
 			
         }
     },
@@ -20,11 +22,12 @@ frappe.ui.form.on("Purchase Receipt", {
 				company: cur_frm.doc.company,
 				
 			},
-			date_field: "date",
+			date_field: "posting_date",
 			get_query() {
 				return {
 					filters: { 
 						docstatus: ['=', 1],
+						status:['!=', 'Received'],
 						invoiced_by: cur_frm.doc.supplier
 					}
 				}
@@ -34,8 +37,29 @@ frappe.ui.form.on("Purchase Receipt", {
 					frappe.msgprint('Select Goods In Transit Note')
 				}
 				else{
-					cur_frm.doc.items = null
-					frappe.call('shipments.events.purchase_receipt.get_items_from_goodsintransit',{selections})
+					cur_frm.doc.items = []
+					// frappe.call('shipments.events.purchase_receipt.get_items_from_goodsintransit',{selections})
+					for (let row in selections){
+						frappe.db.get_doc('Goods In Transit Note', selections[row])
+						.then(doc => {
+							for (let i in doc.items){
+								cur_frm.add_child('items', {
+									item_code : doc.items[i].item_code,
+									item_name: doc.items[i].item_name,
+									description: doc.items[i].description,
+									warehouse: doc.items[i].warehouse,
+									qty : doc.items[i].qty,
+									uom : doc.items[i].uom,
+									conversion_factor: doc.items[i].conversion_factor,
+									stock_uom: doc.items[i].stock_uom,
+									rate : doc.items[i].rate,
+									amount : doc.items[i].amount,
+									goods_in_transit_note: doc.name,
+									goods_in_transit_note_item: doc.items[i].name
+								})
+							}
+						})
+					}
 					cur_frm.refresh();
 				}
 			}

@@ -85,13 +85,12 @@ doctype_js = {
 # Hook on document methods and events
 
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Purchase Receipt": {
+		"on_submit": "shipments.events.purchase_receipt.update_goods_in_transit_note_items",
+        "on_cancel": "shipments.events.purchase_receipt.update_goods_in_transit_note_items_on_cancel"
+	}
+}
 
 # Scheduled Tasks
 # ---------------

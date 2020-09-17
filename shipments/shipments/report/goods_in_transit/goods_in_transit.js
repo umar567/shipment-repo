@@ -13,15 +13,15 @@ frappe.query_reports["Goods In Transit"] = {
 			
 		},
 		{
-			'label': 'Document Status',
-			'fieldname': 'document_status',
+			'label': 'Status',
+			'fieldname': 'status',
 			'fieldtype': 'Select',
-			'options' : 'Draft\nWaiting to Receive Items\nReceived'
+			'options' : 'Draft\nTo Receive\nPartially Received\nReceived'
 			
 		},
 		{
 			'label': 'Date',
-			'fieldname': 'date',
+			'fieldname': 'posting_date',
 			'fieldtype': 'Date',
 			
 		},
@@ -29,6 +29,7 @@ frappe.query_reports["Goods In Transit"] = {
 			"fieldname": "show_goods_in_transit_item",
 			"label": __("Show Goods In Transit Item"),
 			"fieldtype": "Check",
+			"default": 1,
 			on_change: () => {
 				$('button[data-label="Refresh"]').click();
 			}

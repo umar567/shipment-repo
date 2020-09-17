@@ -8,8 +8,26 @@ from frappe.model.document import Document
 import datetime
 
 class GoodsInTransitNote(Document):
+	def validate(self):
+		self.calculate_item_total()
+
 	def on_submit(self):
+		self.db_set('status', 'Waiting to Receive Items')
 		self.update_purchase_order_items()
+
+	def on_cancel(self):
+		self.update_purchase_order_on_cancel()
+		
+
+	def calculate_item_total(self):
+		total_qty = 0
+		total_amount = 0
+		for row in self.items:
+			total_qty += row.qty
+			total_amount += row.amount
+		
+		self.total_qty = total_qty
+		self.amount = total_amount
 
 	def update_purchase_order_items(self):
 		'''validating items from the purchase order if they are still available'''		
@@ -24,11 +42,11 @@ class GoodsInTransitNote(Document):
 				
 				new_dispatched_qty = dispatched_qty + row.qty
 				frappe.db.set_value('Purchase Order Item', row.purchase_order_item, 'dispatched_qty', new_dispatched_qty)
-				self.update_purchase_order__goods_status(row)
+				self.update_purchase_order_goods_status(row)
 	
-	def update_purchase_order__goods_status(self, row):
+	def update_purchase_order_goods_status(self, row):
 		''' updates Purchase Order Goods Status 
-			Goods Status = [Partially Dispatched, Dispatched]
+			Goods Status = [To Dispatch, Partially Dispatched, Dispatched]
 			if all goods dispatched then goods status = Dispatched
 			if some goods dispatched then goods status = Partially Dispatched
 		'''
@@ -41,37 +59,55 @@ class GoodsInTransitNote(Document):
 		
 		if total_dispatched_qty == purchase_doc.total_qty:
 			purchase_doc.db_set('goods_status', 'Dispatched')
+		elif total_dispatched_qty == 0:
+			purchase_doc.db_set('goods_status', 'To Dispatch')
 		else:
 			purchase_doc.db_set('goods_status', 'Partially Dispatched')
 		
+	def update_purchase_order_on_cancel(self):
+		for row in self.items:
+			if row.purchase_order:
+				dispatched_qty = frappe.db.get_value('Purchase Order Item', 
+				{'name': row.purchase_order_item}, 
+				['dispatched_qty'])
+
+				new_dispatched_qty = dispatched_qty - row.qty
+				frappe.db.set_value(
+					'Purchase Order Item', 
+					row.purchase_order_item, 
+					'dispatched_qty', 
+					new_dispatched_qty
+				)
+				self.update_purchase_order_goods_status(row)
 
 	def get_items_from_purchase_order(self,selections):
 		total_qty = 0
 		amount = 0
-		self.items = []
-		for i in selections:
-			purchase_order = frappe.get_doc('Purchase Order', i)
+		for doc_id in selections:
+			purchase_order = frappe.get_doc('Purchase Order', doc_id)
 			purchase_order.db_set('goods_status', 'Goods in Transit')
-			for item in purchase_order.items:
-				if item.qty - item.dispatched_qty != 0:
-					qty = item.qty - item.dispatched_qty
-					item_amount = item.rate * qty
+			for row in purchase_order.items:
+				if row.qty - row.dispatched_qty != 0:
+					qty = row.qty - row.dispatched_qty
+					item_amount = row.rate * qty
 					self.append('items',{
-						'item_code' : item.item_code,
-						'qty': qty,
-						'rate': item.rate,
-						'total_amount' : item_amount,
-						'warehouse'	: item.warehouse,
-						'conversion_factor' : item.conversion_factor,
-						'uom' : item.uom,
+						'item_code' :row.item_code,
+						'item_name': row.item_name,
+						'description': row.description,
+						'warehouse': row.warehouse,
+						'qty' :row.qty - row.dispatched_qty,
+						'uom' :row.uom,
+						'conversion_factor': row.conversion_factor,
+						'stock_uom': row.stock_uom,
+						'rate' :row.rate,
+						'amount' :row.amount,
 						'purchase_order': purchase_order.name,
-						'purchase_order_item': item.name
-					}
-					)
+						'purchase_order_item': row.name
+					})
 					total_qty += qty
 					amount += item_amount
 		self.total_qty = total_qty
-		self.amount = amount
+		self.total = amount
 
 	
 
